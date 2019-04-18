@@ -81,10 +81,21 @@
 #endif
 
 #define SERVALSVC_COMMAND_IS_CAPABILITY_ENABLED ((uint32_t) 0x100)
+#define SERVALSVC_COMMAND_GET_VERSION           ((uint32_t) 0x101)
 
 struct SERVALSVC_COMMAND_IS_CAPABILITY_ENABLED_PARAMS
 {
    const uint8_t *uuid;
+};
+struct SERVALSVC_VERSION
+{
+   uint16_t release;
+   uint16_t major;
+   uint16_t minor;
+};
+struct SERVALSVC_COMMAND_GET_VERSION_PARAMS
+{
+   struct SERVALSVC_VERSION* version;
 };
 struct SERVALSVC_COMMAND
 {
@@ -92,6 +103,7 @@ struct SERVALSVC_COMMAND
    union
    {
       struct SERVALSVC_COMMAND_IS_CAPABILITY_ENABLED_PARAMS is_capability_enabled;
+      struct SERVALSVC_COMMAND_GET_VERSION_PARAMS get_version;
    } params;
 };
 
